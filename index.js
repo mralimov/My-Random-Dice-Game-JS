@@ -17,8 +17,23 @@ const holdBtn = document.querySelector('.btn--hold');
 const currentLabel = document.querySelector('.current-label');
 const diceImage = document.querySelector('.dice');
 
+//Starting condition
+score1Player.textContent = 0;
+score2Player.textContent = 0;
+diceImage.classList.add('hidden');
+
+const scores = [0, 0];
+let currentScore = 0;
+let activePlayer = 0;
+
+//Rolling dice function
 rollDice.addEventListener('click', () => {
+  //1. Generating a random dice roll
   const diceNumber = Math.trunc(Math.random() * 6 + 1);
   console.log(diceNumber);
-  diceNumber.
+
+  //2. Display dice
+  diceImage.classList.remove('hidden');
+
+  diceImage.src = `dice-${diceNumber}.png`;
 });
