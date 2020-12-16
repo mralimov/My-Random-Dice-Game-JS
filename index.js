@@ -38,15 +38,18 @@ rollDice.addEventListener('click', () => {
   diceImage.src = `dice-${diceNumber}.png`;
 
   //3. Check for rolled 1: if true
-  if (diceImage !== 1) {
+  if (diceNumber !== 1) {
     //Add dice to current score
     currentScore += diceNumber;
     document.getElementById(
       `current--${activePlayer}`
-    ).textContent = current1Score;
+    ).textContent = currentScore;
   } else {
     //switch to next player
-
+    document.getElementById(`current--${activePlayer}`).textContent = 0;
     activePlayer = activePlayer === 0 ? 1 : 0;
+    currentScore = 0;
+    player1El.classList.toggle('player--active');
+    player2El.classList.toggle('player--active');
   }
 });
