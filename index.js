@@ -58,3 +58,16 @@ rollDice.addEventListener('click', () => {
     }
   }
 });
+//Hold function
+holdBtn.addEventListener('click', function () {
+  //Adding current score to active player's score
+  scores[activePlayer] += currentScore;
+  document.getElementById(`score--${activePlayer}`).textContent =
+    scores[activePlayer];
+  //Checking if player's score is >= 50
+
+  //Finish the game
+
+  //Switch to next player
+  switchPlayer();
+});
