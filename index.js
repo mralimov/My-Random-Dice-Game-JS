@@ -18,7 +18,7 @@ const currentLabel = document.querySelector('.current-label');
 const diceImage = document.querySelector('.dice');
 
 //Declering global variables
-let scores, current1Score, activePlayer, playingGame;
+let scores, currentScore, activePlayer, playingGame;
 
 //Starting point
 const initialization = function () {
@@ -101,6 +101,4 @@ holdBtn.addEventListener('click', function () {
     }
   }
 });
-newGameBtn.addEventListener('click', function () {
-  initialization();
-});
+newGameBtn.addEventListener('click', initialization);
