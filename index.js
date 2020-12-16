@@ -25,31 +25,36 @@ diceImage.classList.add('hidden');
 const scores = [0, 0];
 let currentScore = 0;
 let activePlayer = 0;
-
+const switchPlayer = function () {
+  //switch to next player
+  document.getElementById(`current--${activePlayer}`).textContent = 0;
+  activePlayer = activePlayer === 0 ? 1 : 0;
+  currentScore = 0;
+  player1El.classList.toggle('player--active');
+  player2El.classList.toggle('player--active');
+};
 //Rolling dice function
 rollDice.addEventListener('click', () => {
   //1. Generating a random dice roll
-  const diceNumber = Math.trunc(Math.random() * 6 + 1);
-  console.log(diceNumber);
+  if (currentScore < 20) {
+    const diceNumber = Math.trunc(Math.random() * 6 + 1);
+    console.log(diceNumber);
 
-  //2. Display dice
-  diceImage.classList.remove('hidden');
+    //2. Display dice
+    diceImage.classList.remove('hidden');
 
-  diceImage.src = `dice-${diceNumber}.png`;
+    diceImage.src = `dice-${diceNumber}.png`;
 
-  //3. Check for rolled 1: if true
-  if (diceNumber !== 1) {
-    //Add dice to current score
-    currentScore += diceNumber;
-    document.getElementById(
-      `current--${activePlayer}`
-    ).textContent = currentScore;
-  } else {
-    //switch to next player
-    document.getElementById(`current--${activePlayer}`).textContent = 0;
-    activePlayer = activePlayer === 0 ? 1 : 0;
-    currentScore = 0;
-    player1El.classList.toggle('player--active');
-    player2El.classList.toggle('player--active');
+    //3. Check for rolled 1: if true
+    if (diceNumber !== 1) {
+      //Add dice to current score
+      currentScore += diceNumber;
+      document.getElementById(
+        `current--${activePlayer}`
+      ).textContent = currentScore;
+    } else {
+      //switch to next player
+      switchPlayer();
+    }
   }
 });
