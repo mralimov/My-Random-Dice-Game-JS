@@ -72,6 +72,7 @@ holdBtn.addEventListener('click', function () {
     //Checking if player's score is >= 50
     if (scores[activePlayer] >= 20) {
       //Finish the game
+      diceImage.classList.add('hidden');
       playingGame = false;
       document
         .querySelector(`.player--${activePlayer}`)
