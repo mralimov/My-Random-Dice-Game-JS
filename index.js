@@ -45,5 +45,8 @@ rollDice.addEventListener('click', () => {
       `current--${activePlayer}`
     ).textContent = current1Score;
   } else {
+    //switch to next player
+
+    activePlayer = activePlayer === 0 ? 1 : 0;
   }
 });
