@@ -36,4 +36,14 @@ rollDice.addEventListener('click', () => {
   diceImage.classList.remove('hidden');
 
   diceImage.src = `dice-${diceNumber}.png`;
+
+  //3. Check for rolled 1: if true
+  if (diceImage !== 1) {
+    //Add dice to current score
+    currentScore += diceNumber;
+    document.getElementById(
+      `current--${activePlayer}`
+    ).textContent = current1Score;
+  } else {
+  }
 });
