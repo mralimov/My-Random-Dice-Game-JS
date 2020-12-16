@@ -85,3 +85,15 @@ holdBtn.addEventListener('click', function () {
     }
   }
 });
+newGameBtn.addEventListener('click', function () {
+  score1Player.textContent = 0;
+  score2Player.textContent = 0;
+  diceImage.classList.add('hidden');
+  playingGame = true;
+  scores = [0, 0];
+  currentScore = 0;
+  activePlayer = 0;
+  playingGame = true;
+  player1El.classList.toggle('player--active');
+  player2El.classList.toggle('player--active');
+});
