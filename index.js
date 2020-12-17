@@ -17,29 +17,44 @@ const holdBtn = document.querySelector('.btn--hold');
 const currentLabel = document.querySelector('.current-label');
 const diceImage = document.querySelector('.dice');
 
-//Starting condition
-score1Player.textContent = 0;
-score2Player.textContent = 0;
-diceImage.classList.add('hidden');
+//Declering global variables
+let scores, currentScore, activePlayer, playingGame;
 
-const scores = [0, 0];
-let currentScore = 0;
-let activePlayer = 0;
-let playingGame = true;
+//Starting point
+const initialization = function () {
+  score1Player.textContent = 0;
+  score2Player.textContent = 0;
 
+  scores = [0, 0];
+  currentScore = 0;
+  activePlayer = 0;
+  playingGame = true;
+
+  current1Score.textContent = 0;
+  current2Score.textContent = 0;
+  diceImage.classList.add('hidden');
+
+  player1El.classList.remove('player--winner');
+  player2El.classList.remove('player--winner');
+
+  player1El.classList.add('player--active');
+  player2El.classList.remove('player--active');
+};
+initialization();
+
+//switch to next player
 const switchPlayer = function () {
-  //switch to next player
   document.getElementById(`current--${activePlayer}`).textContent = 0;
   activePlayer = activePlayer === 0 ? 1 : 0;
   currentScore = 0;
   player1El.classList.toggle('player--active');
   player2El.classList.toggle('player--active');
 };
+
 //Rolling dice function
 rollDice.addEventListener('click', () => {
   if (playingGame) {
     //1. Generating a random dice roll
-
     const diceNumber = Math.trunc(Math.random() * 6 + 1);
     console.log(diceNumber);
 
@@ -69,7 +84,7 @@ holdBtn.addEventListener('click', function () {
     document.getElementById(`score--${activePlayer}`).textContent =
       scores[activePlayer];
 
-    //Checking if player's score is >= 50
+    //Checking if player's score is >= 20
     if (scores[activePlayer] >= 20) {
       //Finish the game
       diceImage.classList.add('hidden');
@@ -86,15 +101,4 @@ holdBtn.addEventListener('click', function () {
     }
   }
 });
-newGameBtn.addEventListener('click', function () {
-  score1Player.textContent = 0;
-  score2Player.textContent = 0;
-  diceImage.classList.add('hidden');
-  playingGame = true;
-  scores = [0, 0];
-  currentScore = 0;
-  activePlayer = 0;
-  playingGame = true;
-  player1El.classList.toggle('player--active');
-  player2El.classList.toggle('player--active');
-});
+newGameBtn.addEventListener('click', initialization);
